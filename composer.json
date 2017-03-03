@@ -1,0 +1,38 @@
+{
+    "name": "koz1024/f1024",
+    "description": "Simple MVC framework",
+    "version": "0.1.0-beta",
+    "keywords": ["framework", "mvc"],
+    "type": "library",
+    "homepage": "http://koz1024.net/framework",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Konstantin Zavalny",
+            "email": "koz1024@gmail.com",
+            "homepage": "http://koz1024.me",
+            "role": "Author, Lead developer"
+        }
+    ],
+    "support": {
+        "email": "koz1024@gmail.com",
+        "issues": "https://github.com/koz1024/f1024/issues",
+        "docs": "https://koz1024.net/framework/"
+    },
+    "autoload": {
+        "psr-4": {
+            "f1024\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.5.0"
+    },
+    "require-dev": {},
+    "minimum-stability": "dev",
+    "scripts": {
+        "post-install-cmd": [
+            "f1024\\bootstrap\\Bootstrap::postInstallCmd"
+        ]
+        
+    }
+}
