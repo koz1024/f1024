@@ -32,7 +32,7 @@ class Router{
             $name = $name[sizeof($name)-1];
             $name = substr($name, 0, strpos($name, '.'));
             
-            $this->SL->addClass('\\controllers\\'.$name, $this->SL);
+            $this->SL->addClass('controllers\\'.$name, $this->SL);
         }
         
     }
