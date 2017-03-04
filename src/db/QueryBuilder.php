@@ -50,6 +50,7 @@ class QueryBuilder{
      * @return type
      */
     public function where($conditions = []){
+        $this->params = [];
         if ($this->db->getType()=='mysql_pdo'){
             return $this->wherePDO($conditions);
         }elseif ($this->db->getType()=='mysql'){
