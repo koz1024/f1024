@@ -32,6 +32,20 @@ class QueryBuilder{
     }
     
     /**
+     * Resets all query-related data
+     * @return \f1024\db\QueryBuilder
+     */
+    public function reset(){
+        $this->conditions   = '';
+        $this->ordering     = '';
+        $this->limit        = '';
+        $this->insdata      = '';
+        $this->sql          = '';
+        $this->params       = [];
+        return $this;
+    }
+    
+    /**
      * Sets the name of table
      * 
      * @param string $tableName Name of table
@@ -50,9 +64,7 @@ class QueryBuilder{
      * @return type
      */
     public function where($conditions = []){
-        $this->params       = [];
-        $this->conditions   = '';
-        $this->sql          = '';
+        $this->reset();
         
         if ($this->db->getType()=='mysql_pdo'){
             return $this->wherePDO($conditions);
