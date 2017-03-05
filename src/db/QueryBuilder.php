@@ -137,7 +137,9 @@ class QueryBuilder{
      * @return \f1024\db\QueryBuilder
      */
     public function order($by, $isAsc = true){
-        if (!empty($by)){
+        if (!empty($by) && strtolower($by) == 'rand'){
+            $this->ordering = 'ORDER BY rand()';
+        }elseif (!empty($by)){
             $this->ordering = 'ORDER BY `' . $by . '` '. ($isAsc ? 'ASC' : 'DESC');
         }
         return $this;
