@@ -97,24 +97,29 @@ class QueryBuilder{
      * @return \f1024\db\QueryBuilder
      */
     private function wherePDO($conditions = []){
+        $fNoTrim = true;
         foreach ($conditions as $cond => $val){
             if (!is_array($val)){
-                if (intval($cond)){
+                if (is_int($cond)){
                     $this->conditions .= '? AND';
                 }else{
                     $this->conditions .= $cond . ' = ? AND ';
                 }
                 $this->params[] = $val;
-            }else{
+                $fNoTrim = false;
+            }elseif (!empty($val)){
                 $this->conditions .= $cond . ' IN (';
-                foreach ($val as $inval){
+                foreach ($val as $intval){
                     $this->conditions .= '?, ';
                     $this->params[] = $intval;
                 }
                 $this->conditions = substr($this->conditions, 0, -2) . ') AND';
+                $fNoTrim = false;
             }
         }
-        $this->conditions = substr($this->conditions, 0, -4);
+        if (!$fNoTrim){
+            $this->conditions = substr($this->conditions, 0, -4);
+        }
         return $this;
     }
     
