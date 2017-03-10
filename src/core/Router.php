@@ -244,7 +244,7 @@ class Router{
         if (!isset($config['global']['disableRestRouting']) || isset($config['global']['disableRestRouting']) && $config['global']['disableRestRouting'] === false){
             $method     = $_SERVER['REQUEST_METHOD'];
             $segments   = explode('/', strtolower($uri));
-            $controller = '\\controllers\\' . ucfirst($segments[1]) . 'Controller';
+            $controller = 'controllers\\' . ucfirst($segments[1]) . 'Controller';
             switch (strtolower($method)){
                 case 'get':
                     $action = 'index';
@@ -298,7 +298,7 @@ class Router{
         $return = false;
         if (!isset($config['global']['disableSegmentRouting']) || isset($config['global']['disableSegmentRouting']) && $config['global']['disableSegmentRouting'] === false){
             $segments   = explode('/', strtolower($uri));
-            $controller = '\\controllers\\' . ucfirst($segments[1]) . 'Controller';
+            $controller = 'controllers\\' . ucfirst($segments[1]) . 'Controller';
             $action     = (isset($segments[2])) ? $segments[2] : 'index';
             $params     = (isset($segments[3])) ? $segments[3] : false;
             if ($this->SL->has($controller)){
