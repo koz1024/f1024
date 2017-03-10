@@ -114,6 +114,8 @@ class QueryBuilder{
             if (!is_array($val)){
                 if (is_int($cond)){
                     $this->conditions .= '? AND';
+                }elseif (strpos($cond, '!')===0){
+                    $this->conditions .= substr($cond, 1) . ' ? AND ';
                 }else{
                     $this->conditions .= $cond . ' = ? AND ';
                 }
