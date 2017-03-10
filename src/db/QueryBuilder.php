@@ -251,7 +251,8 @@ class QueryBuilder{
         $this->db->query($this->sql, $this->params);
         $error  = $this->db->getError();
         if (!empty($error)){
-            throw new \Exception('Error on query: '.$this->sql.' ('.$error.')');
+            //once we're using PDO, $error has never been empty
+            //throw new \Exception('Error on query: '.$this->sql.' ('.$error.')');
         }
         return true;
     }
@@ -269,7 +270,8 @@ class QueryBuilder{
         $this->db->query($this->sql, $this->params);
         $error  = $this->db->getError();
         if (!empty($error)){
-            throw new \Exception('Error on query: '.$this->sql.' ('.$error.')');
+            //once we're using PDO, $error has never been empty
+            //throw new \Exception('Error on query: '.$this->sql.' ('.$error.')');
         }
         return $this->db->lastId();
     }

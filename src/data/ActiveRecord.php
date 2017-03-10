@@ -199,6 +199,7 @@ class ActiveRecord extends QueryBuilder{
     public function save($primaryKey = false){
         if ($this->isNew){
             $this
+                ->reset()
                 ->table($this->tableName)
                 ->set($this->dirtyAttributes)
                 ->insert();
@@ -372,7 +373,7 @@ class ActiveRecord extends QueryBuilder{
      * @param mixed $value
      */
     public function __set($name, $value) {
-        if (isset($this->attributes[$name])){
+        if (isset($this->attributes[$name]) || $this->isNew){
             $this->dirtyAttributes[$name] = $value;
         }
     }
