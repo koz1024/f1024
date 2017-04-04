@@ -115,14 +115,14 @@ class QueryBuilder{
                 if (is_int($cond)){
                     $this->conditions .= '? AND';
                 }elseif (strpos($cond, '!')===0){
-                    $this->conditions .= substr($cond, 1) . ' ? AND ';
+                    $this->conditions .= ' '.substr($cond, 1) . ' ? AND ';
                 }else{
-                    $this->conditions .= $cond . ' = ? AND ';
+                    $this->conditions .= ' '.$cond . ' = ? AND ';
                 }
                 $this->params[] = $val;
                 $fNoTrim = false;
             }elseif (!empty($val)){
-                $this->conditions .= $cond . ' IN (';
+                $this->conditions .= ' '.$cond . ' IN (';
                 foreach ($val as $intval){
                     $this->conditions .= '?, ';
                     $this->params[] = $intval;
