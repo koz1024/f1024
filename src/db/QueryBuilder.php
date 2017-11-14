@@ -63,8 +63,10 @@ class QueryBuilder{
      * @param array $conditions
      * @return type
      */
-    public function where($conditions = []){
-        $this->reset();
+    public function where($conditions = [], $reset = true){
+        if ($reset){
+            $this->reset();
+        }
         
         if ($this->db->getType()=='mysql_pdo'){
             return $this->wherePDO($conditions);
@@ -110,8 +112,11 @@ class QueryBuilder{
      */
     private function wherePDO($conditions = []){
         $fNoTrim = true;
+        $_reserved = ['IS NOT NULL', 'IS NULL'];
         foreach ($conditions as $cond => $val){
-            if (!is_array($val)){
+            if (in_array($val, $_reserved)){
+                $this->conditions .= $cond.' '.$val.' AND ';
+            }elseif (!is_array($val)){
                 if (is_int($cond)){
                     $this->conditions .= '? AND';
                 }elseif (strpos($cond, '!')===0){
@@ -122,7 +127,7 @@ class QueryBuilder{
                 $this->params[] = $val;
                 $fNoTrim = false;
             }elseif (!empty($val)){
-                $this->conditions .= ' '.$cond . ' IN (';
+                $this->conditions .= $cond . ' IN (';
                 foreach ($val as $intval){
                     $this->conditions .= '?, ';
                     $this->params[] = $intval;
@@ -224,6 +229,13 @@ class QueryBuilder{
         return $result->resultArray();
     }
     
+    public function getLastSQL(){
+        return $this->sql;
+    }
+    
+    public function getParams(){
+        return $this->params;
+    }    
     /**
      * Sets insert/update data
      * 
@@ -291,6 +303,10 @@ class QueryBuilder{
         $this->db->query($this->sql, $this->params);
         
         return true;
+    }
+    
+    public function lastId(){
+        return $this->db->lastId();
     }
     
 }

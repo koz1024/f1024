@@ -13,7 +13,9 @@ The minimum requirement is web server supporting PHP 5.5
 
 We automatically generate config file for you. But, it is more than likely, you want to change something there
 Your config file has *sections*:
+
 **Global section**
+
 * ```prettyurl = false | db``` if *db* router will use database table *url* for user-friendly routing
 * ```disableSegmentRouting = false | true``` if *false* router will try to parse URI by segments (like www.example.com/controllername/actionname/other/params/here)
 * ```disableRestRouting = false | true``` if *false* router will try to parse request method and URI by segments. Needs for REST applications

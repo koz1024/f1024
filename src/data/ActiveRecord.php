@@ -209,9 +209,10 @@ class ActiveRecord extends QueryBuilder{
             
             if ($where){
                 $this
+                    ->reset()
                     ->table($this->tableName)
                     ->set($this->dirtyAttributes)
-                    ->where($where)
+                    ->where($where, false)
                     ->update();
             }else{
                 throw new \Exception('Primary key for table '.$this->tableName.' on model '.__CLASS__.' is not defined');
@@ -373,9 +374,10 @@ class ActiveRecord extends QueryBuilder{
      * @param mixed $value
      */
     public function __set($name, $value) {
-        if (isset($this->attributes[$name]) || $this->isNew){
+        //todo: Аттрибуты, имеющие NULL в качестве значения - не проходят проверку.
+        //if (isset($this->attributes[$name]) || is_null($this->attributes[$name]) || $this->isNew){
             $this->dirtyAttributes[$name] = $value;
-        }
+        //}
     }
     
     /**
