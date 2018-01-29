@@ -132,7 +132,7 @@ class QueryBuilder{
                     $this->conditions .= '?, ';
                     $this->params[] = $intval;
                 }
-                $this->conditions = substr($this->conditions, 0, -2) . ') AND';
+                $this->conditions = substr($this->conditions, 0, -2) . ') AND ';
                 $fNoTrim = false;
             }
         }

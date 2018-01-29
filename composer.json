@@ -1,7 +1,7 @@
 {
     "name": "koz1024/f1024",
     "description": "Simple MVC framework",
-    "version": "0.1.11-RC",
+    "version": "0.1.12-RC",
     "keywords": ["framework", "mvc"],
     "type": "library",
     "homepage": "http://koz1024.net/framework",
