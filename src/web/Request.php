@@ -20,8 +20,8 @@ class Request{
      * @param mixed $default Value that will be returned if param is absent
      * @return mixed
      */
-    public function get($name, $default = null){
-        return (isset($_GET[$name])) ? $_GET[$name] : $default;
+    public function get($name = null, $default = null){
+        return !is_null($name) ? ((isset($_GET[$name])) ? $_GET[$name] : $default) : $_GET;
     }
 
     /**
@@ -30,8 +30,8 @@ class Request{
      * @param mixed $default Value that will be returned if param is absent
      * @return mixed
      */    
-    public function post($name, $default = null){
-        return (isset($_POST[$name])) ? $_POST[$name] : $default;
+    public function post($name = null, $default = null){
+        return !is_null($name) ? ((isset($_POST[$name])) ? $_POST[$name] : $default) : $_POST;
     }
     
     /**
