@@ -96,8 +96,11 @@ class Htmlview implements View{
         }else{
             $path = $config['basePath'] . '/views';
         }
+        ob_start();
         include($path . '/' . $tpl . '.php');
+        $return = ob_get_clean();
         $_SESSION['flash'] = false;
+        return $return;
     }
     
 }
