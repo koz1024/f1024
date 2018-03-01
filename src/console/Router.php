@@ -32,7 +32,7 @@ class Router{
             $name = $name[sizeof($name)-1];
             $name = substr($name, 0, strpos($name, '.'));
             
-            $this->SL->addClass('\\commands\\'.$name, $this->SL);
+            $this->SL->addClass('commands\\'.$name, $this->SL);
         }
     }
     
@@ -48,8 +48,8 @@ class Router{
                 }else{
                     $class->index($param);
                 }
-            }elseif($this->SL->has($params[1])){
-                $class  = $this->SL->get($params[1]);
+            }elseif($this->SL->has('commands\\'.$params[1])){
+                $class  = $this->SL->get('commands\\'.$params[1]);
                 $action = isset($params[2]) ? $params[2] : 'index';
                 $param  = isset($params[3]) ? $params[3] : null;
                 if (method_exists($class, $action)){
